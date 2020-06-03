@@ -1,0 +1,17 @@
+.wrapper{
+    height: 100%;
+    animation: fadein 2s;
+}
+
+.cont{
+    margin-top: 5% !important;
+    display: flex;
+    align-items: flex-start !important;
+}
+
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

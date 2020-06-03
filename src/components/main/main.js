@@ -23,7 +23,7 @@ const Main = () => {
             <div className="container">
 
 
-                <h3 id="title">Please select range</h3>
+                <h3 id="title">Please select a range</h3>
 
 
                 <div className="datePickers">
@@ -48,13 +48,13 @@ const Main = () => {
 
                 </div>
 
-
-
                 <div className="belowRangePicker">
                     {/* <p>Start: {startDate.toDateString()}</p>
                 <p>End: {endDate.toDateString()}</p> */}
+                    <Link to="result">
+                        <Button id="contButton">Continue</Button>
 
-                    <Button id="contButton">Continue</Button>
+                    </Link>
 
                 </div>
 

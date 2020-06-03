@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/Header/header'
 import About from './components/about/about'
 import Main from './components/main/main'
+import Result from './components/result/result'
 
 
 import './index.css'
@@ -18,6 +19,8 @@ function App() {
         <Header></Header>
         <Route exact path="/" component={Main}></Route>
         <Route path="/about" component={About}></Route>
+        <Route path="/result" component={Result}></Route>
+
       </BrowserRouter>
     </div>
   );

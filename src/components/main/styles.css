@@ -3,8 +3,8 @@ h3{
     
 }
 
-Button{
-    padding: 10px;
+#contButton{
+    margin-top: 2rem;
 }
 .container{
     max-width: 70%;
@@ -42,4 +42,11 @@ Button{
 
 .wrapper{
     height: 100%;
+    animation: fadein 2s;
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

@@ -1,12 +1,14 @@
-a {
+a,.nav-item {
     text-decoration: none;
-    color: rgba(255,255,255,.5)
+    color: rgba(255,255,255,.5);
+    cursor: pointer;
 }
 
-a:hover{
+a:hover, .nav-item:hover{
     color: rgba(255,255,255,1);
     text-decoration: none;
+}
 
-
-
+.linkcont{
+    padding-left: 10px;
 }
