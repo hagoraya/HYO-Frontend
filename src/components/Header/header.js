@@ -16,7 +16,7 @@ const header = () => {
                             <Nav.Link> <Link to="/about">About</Link></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/home">Github</Nav.Link>
+                            <Nav.Link href="https://github.com/hagoraya/HYO-Frontend">Github</Nav.Link>
                         </Nav.Item>
 
                     </Nav>

@@ -6,7 +6,9 @@ const about = () => {
         <div>
             <Container>
                 <h2>About component</h2>
-
+                <p>Project info:</p>
+                <p>Sources:</p>
+                <p>authors</p>
             </Container>
         </div>
     )
