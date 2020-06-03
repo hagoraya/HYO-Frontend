@@ -1,85 +1,68 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Button } from 'react-bootstrap'
-
-
-//Css for date range picker
-
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import DatePicker from "react-datepicker"
 import './styles.css'
-import { formatDistance, subDays } from 'date-fns'
 
-
-import { DateRangePicker, DateRange } from 'react-date-range';
-
-let initialValue = {
-    title: 'Select a range',
-    startDate: '',
-    endDate: '',
-}
-
-class main extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            startDate: null,
-            endDate: null
-        }
-
-        this.handleSelect = this.handleSelect.bind(this)
-
-    }
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
+const Main = () => {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
 
-    handleSelect(ranges) {
-        //console.log(ranges.selection);
-        const { startDate, endDate } = ranges.selection
-        this.setState({
-            startDate: startDate,
-            endDate: endDate
-        })
-
-        console.log(this.state.startDate)
-        console.log(this.state.endDate)
-
-    }
+    //useEffect(() => console.log(startDate), [startDate])
 
 
+    return (
 
-    render() {
-
-
-        const selectionRange = {
-            startDate: new Date(),
-            endDate: new Date(),
-            key: 'selection',
-        }
+        <div className="wrapper">
 
 
-
-
-        return (
             <div className="container">
-                <DateRangePicker
-                    ranges={[selectionRange]}
-                    onChange={this.handleSelect}
-                    months={2}
-                    direction="horizontal"
-                />
+
+
+                <h3 id="title">Please select range</h3>
+
+
+                <div className="datePickers">
+
+                    <p id="from">From </p>
+                    <DatePicker
+                        selected={startDate}
+                        onChange={date => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                    />
+                    <p id="to"> To </p>
+                    <DatePicker
+                        selected={endDate}
+                        onChange={date => setEndDate(date)}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                    />
+
+                </div>
+
+
+
                 <div className="belowRangePicker">
-                    <h3>Please select range</h3>
-                    <p></p>
-                    <Button>Continue</Button>
+                    {/* <p>Start: {startDate.toDateString()}</p>
+                <p>End: {endDate.toDateString()}</p> */}
+
+                    <Button id="contButton">Continue</Button>
 
                 </div>
 
             </div>
-        )
-    }
-
+        </div>
+    )
 }
 
-export default main
+
+
+export default Main

@@ -8,6 +8,9 @@ import About from './components/about/about'
 import Main from './components/main/main'
 
 
+import './index.css'
+
+
 function App() {
   return (
     <div className="App">
