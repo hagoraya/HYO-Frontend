@@ -1,0 +1,26 @@
+.rdrDefinedRangesWrapper{
+    visibility: visible;
+}
+
+.rdrDateRangePickerWrapper{
+    padding: 10px;
+}
+
+h3{
+    text-align: center;
+}
+
+.belowRangePicker{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+Button{
+    padding: 10px;
+}
+
+.container{
+    max-width: 70%;
+    text-align: center;
+}
