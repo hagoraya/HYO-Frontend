@@ -1,68 +1,116 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Button } from 'react-bootstrap'
 import DatePicker from "react-datepicker"
 import './styles.css'
 
 import "react-datepicker/dist/react-datepicker.css";
+import { render } from '@testing-library/react'
+
+
+import Result from './../result/result'
 
 
 
-const Main = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+class Main extends Component {
+    //     const[startDate, setStartDate] = useState(new Date());
+    // const [endDate, setEndDate] = useState(new Date());
 
     //useEffect(() => console.log(startDate), [startDate])
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: new Date(),
+            endDate: new Date(),
+            showResult: false
+        };
+
+        this.onButtonClick = this.onButtonClick.bind(this)
+
+    }
 
 
-    return (
 
-        <div className="wrapper">
+    setStartDate = date => {
+        this.setState({
+            startDate: date
+        });
+        //console.log(date)
+    };
+
+    setEndDate = date => {
+        this.setState({
+            endDate: date
+        });
+        // console.log(date)
+
+    };
+
+    onButtonClick() {
+        this.setState({
+            showResult: true,
+        });
+
+    }
 
 
-            <div className="container">
 
 
-                <h3 id="title">Please select a range</h3>
+    render() {
+
+        const { startDate, endDate } = this.state
 
 
-                <div className="datePickers">
+        return (
 
-                    <p id="from">From </p>
-                    <DatePicker
-                        selected={startDate}
-                        onChange={date => setStartDate(date)}
-                        selectsStart
-                        startDate={startDate}
-                        endDate={endDate}
-                    />
-                    <p id="to"> To </p>
-                    <DatePicker
-                        selected={endDate}
-                        onChange={date => setEndDate(date)}
-                        selectsEnd
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={startDate}
-                    />
+            <div className="wrapper">
 
-                </div>
 
-                <div className="belowRangePicker">
+                <div className="container">
+
+
+                    <h3 id="title">Please select a range</h3>
+
+
+                    <div className="datePickers">
+
+                        <p id="from">From </p>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={this.setStartDate}
+                            selectsStart
+                            startDate={startDate}
+                            endDate={endDate}
+
+                        />
+                        <p id="to"> To </p>
+                        <DatePicker
+                            selected={endDate}
+                            onChange={this.setEndDate}
+                            selectsEnd
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate}
+                        />
+
+                    </div>
+
                     {/* <p>Start: {startDate.toDateString()}</p>
                 <p>End: {endDate.toDateString()}</p> */}
-                    <Link to="result">
-                        <Button id="contButton">Continue</Button>
 
-                    </Link>
+                    <Button onClick={this.onButtonClick} id="contButton">Generate</Button>
+
+                    <div className="resultWrapper">
+                        {this.state.showResult ? <Result startDate={startDate} endDate={endDate} /> : null}
+
+                    </div>
+
 
                 </div>
-
             </div>
-        </div>
-    )
+        )
+    }
+
 }
-
-
 
 export default Main

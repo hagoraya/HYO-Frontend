@@ -14,7 +14,8 @@ const about = () => {
                 <h2>Authors</h2>
                 <p>API: Saccha</p>
                 <p>Backend: llya</p>
-                <p>Frontend: Harpreet, Kyle</p>
+                <p>Frontend: Harpreet</p>
+                <p>Web Scraper: Alex</p>
 
                 <h2>Sources</h2>
 
