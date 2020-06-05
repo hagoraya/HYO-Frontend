@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './style.css'
 
 import { TagCloud } from 'react-tagcloud'
@@ -20,23 +20,35 @@ const colorOption = {
 }
 
 
-const result = ({ startDate, endDate }) => {
-    console.log(startDate);
-    console.log(endDate);
+class result extends Component {
 
-    return (
-        <div className="resultWrapper">
+    async componentDidMount() {
+        // console.log(this.props.startDate)
+        // console.log(this.props.endDate);
+
+        const url = "https://randomuser.me/api/";
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+    }
+
+    render() {
 
 
-            <TagCloud
-                minSize={30}
-                maxSize={70}
-                tags={data}
-                colorOptions={colorOption}
+        return (
+            <div className="resultWrapper">
 
-            />
-        </div>
-    )
+
+                <TagCloud
+                    minSize={30}
+                    maxSize={70}
+                    tags={data}
+                    colorOptions={colorOption}
+
+                />
+            </div>
+        )
+    }
 }
 
 export default result

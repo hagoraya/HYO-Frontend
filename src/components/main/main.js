@@ -1,28 +1,25 @@
-import React, { useState, useEffect, Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Container, Button } from 'react-bootstrap'
+import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
 import DatePicker from "react-datepicker"
 import './styles.css'
 
 import "react-datepicker/dist/react-datepicker.css";
-import { render } from '@testing-library/react'
-
 
 import Result from './../result/result'
 
 
 
-class Main extends Component {
-    //     const[startDate, setStartDate] = useState(new Date());
-    // const [endDate, setEndDate] = useState(new Date());
 
-    //useEffect(() => console.log(startDate), [startDate])
+class Main extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             startDate: new Date(),
             endDate: new Date(),
-            showResult: false
+            showResult: false,
+            endDateString: '',
+            startDateString: ''
         };
 
         this.onButtonClick = this.onButtonClick.bind(this)
@@ -30,19 +27,28 @@ class Main extends Component {
     }
 
 
+    formatDate(date) {
+        return date.toISOString().split('T')[0];
+    }
+
+
 
     setStartDate = date => {
+
+        const formatedStartDate = this.formatDate(date)
         this.setState({
-            startDate: date
+            startDate: date,
+            startDateString: formatedStartDate
         });
-        //console.log(date)
     };
 
     setEndDate = date => {
+        const formatedEndDate = this.formatDate(date)
+
         this.setState({
-            endDate: date
+            endDate: date,
+            endDateString: formatedEndDate
         });
-        // console.log(date)
 
     };
 
@@ -58,7 +64,7 @@ class Main extends Component {
 
     render() {
 
-        const { startDate, endDate } = this.state
+        const { startDate, endDate, startDateString, endDateString } = this.state
 
 
         return (
@@ -101,7 +107,7 @@ class Main extends Component {
                     <Button onClick={this.onButtonClick} id="contButton">Generate</Button>
 
                     <div className="resultWrapper">
-                        {this.state.showResult ? <Result startDate={startDate} endDate={endDate} /> : null}
+                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} /> : null}
 
                     </div>
 
