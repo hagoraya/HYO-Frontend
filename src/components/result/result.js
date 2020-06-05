@@ -37,11 +37,14 @@ class result extends Component {
     renderWordCloud() {
 
         if ((this.props.personData.gender) === 'male') {
-            wordCloudData[7].count = wordCloudData[7].count * 2
+            wordCloudData[7].count = wordCloudData[7].count + 2
+            console.log(wordCloudData[7].count)
             // console.log(wordCloudData[7].value)
         } else {
             // wordCloudData['female'].count = count + 1
-            wordCloudData[8].count = wordCloudData[8].count * 2
+            wordCloudData[8].count = wordCloudData[8].count + 2
+            console.log(wordCloudData[8].count)
+
 
 
 
@@ -72,7 +75,6 @@ class result extends Component {
 
         return (
             <div className="resultWrapper">
-                <p>{this.props.personData.email}</p>
                 {this.renderWordCloud()}
 
             </div>
