@@ -20,6 +20,7 @@ class Main extends Component {
             showResult: false,
             endDateString: '',
             startDateString: '',
+            personData: null
         };
 
         this.onButtonClick = this.onButtonClick.bind(this)
@@ -61,11 +62,16 @@ class Main extends Component {
 
     };
 
-    onButtonClick() {
+    async onButtonClick() {
+        const url = "https://api.randomuser.me/"
+        const response = await fetch(url)
+        const data = await response.json();
+        //console.log(data)
+
         this.setState({
             showResult: true,
+            personData: data.results[0]
         });
-
     }
 
 
@@ -73,7 +79,7 @@ class Main extends Component {
 
     render() {
 
-        const { startDate, endDate, startDateString, endDateString } = this.state
+        const { startDate, endDate, startDateString, endDateString, personData } = this.state
 
 
         return (
@@ -116,7 +122,7 @@ class Main extends Component {
                     <Button onClick={this.onButtonClick} id="contButton">Generate</Button>
 
                     <div className="resultWrapper">
-                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} /> : null}
+                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} personData={personData} /> : null}
 
                     </div>
 

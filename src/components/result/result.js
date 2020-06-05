@@ -5,7 +5,7 @@ import { TagCloud } from 'react-tagcloud'
 import { getAllByPlaceholderText } from '@testing-library/react'
 import { getDefaultLocale } from 'react-datepicker'
 
-const data = [
+var wordCloudData = [
     { value: 'JavaScript', count: 38 },
     { value: 'React', count: 30 },
     { value: 'Nodejs', count: 28 },
@@ -13,6 +13,8 @@ const data = [
     { value: 'HTML5', count: 33 },
     { value: 'MongoDB', count: 18 },
     { value: 'CSS3', count: 22 },
+    { value: 'male', count: 1 },
+    { value: 'female', count: 1 }
 ]
 
 const colorOption = {
@@ -21,28 +23,39 @@ const colorOption = {
     alpha: 6
 }
 
+var mcount = 0
+var fcount = 0
 
 class result extends Component {
+    constructor(props) {
+        super(props)
 
-
-
-    async getdata() {
-        console.log("From" + this.props.startDate + " to " + this.props.endDate) //remove later
-        const url = "https://api.randomuser.me/"
-        const response = await fetch(url)
-        const data = await response.json();
-        console.log(data)
-
-
+        this.renderWordCloud = this.renderWordCloud.bind(this)
     }
 
+
     renderWordCloud() {
+
+        if ((this.props.personData.gender) === 'male') {
+            wordCloudData[7].count = wordCloudData[7].count * 2
+            // console.log(wordCloudData[7].value)
+        } else {
+            // wordCloudData['female'].count = count + 1
+            wordCloudData[8].count = wordCloudData[8].count * 2
+
+
+
+        }
+
+        //console.log(wordCloudData)
+
+
         return (
 
             <TagCloud
                 minSize={30}
                 maxSize={70}
-                tags={data}
+                tags={wordCloudData}
                 colorOptions={colorOption}
                 shuffle={true}
             />
@@ -55,13 +68,11 @@ class result extends Component {
 
     render() {
 
-        { this.getdata() }
+        // { this.getdata() }
 
         return (
             <div className="resultWrapper">
-
-                <p>from {this.props.startDate} to {this.props.endDate}</p>
-
+                <p>{this.props.personData.email}</p>
                 {this.renderWordCloud()}
 
             </div>
