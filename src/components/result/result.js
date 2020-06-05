@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './style.css'
 
 import { TagCloud } from 'react-tagcloud'
+import { getAllByPlaceholderText } from '@testing-library/react'
+import { getDefaultLocale } from 'react-datepicker'
 
 const data = [
     { value: 'JavaScript', count: 38 },
@@ -10,7 +12,7 @@ const data = [
     { value: 'Express.js', count: 25 },
     { value: 'HTML5', count: 33 },
     { value: 'MongoDB', count: 18 },
-    { value: 'CSS3', count: 20 },
+    { value: 'CSS3', count: 22 },
 ]
 
 const colorOption = {
@@ -22,30 +24,46 @@ const colorOption = {
 
 class result extends Component {
 
-    async componentDidMount() {
-        // console.log(this.props.startDate)
-        // console.log(this.props.endDate);
 
-        const url = "https://randomuser.me/api/";
-        const response = await fetch(url);
+
+    async getdata() {
+        console.log("From" + this.props.startDate + " to " + this.props.endDate) //remove later
+        const url = "https://api.randomuser.me/"
+        const response = await fetch(url)
         const data = await response.json();
-        console.log(data);
+        console.log(data)
+
+
     }
+
+    renderWordCloud() {
+        return (
+
+            <TagCloud
+                minSize={30}
+                maxSize={70}
+                tags={data}
+                colorOptions={colorOption}
+                shuffle={true}
+            />
+        )
+
+    }
+
+
+
 
     render() {
 
+        { this.getdata() }
 
         return (
             <div className="resultWrapper">
 
+                <p>from {this.props.startDate} to {this.props.endDate}</p>
 
-                <TagCloud
-                    minSize={30}
-                    maxSize={70}
-                    tags={data}
-                    colorOptions={colorOption}
+                {this.renderWordCloud()}
 
-                />
             </div>
         )
     }

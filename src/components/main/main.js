@@ -19,7 +19,7 @@ class Main extends Component {
             endDate: new Date(),
             showResult: false,
             endDateString: '',
-            startDateString: ''
+            startDateString: '',
         };
 
         this.onButtonClick = this.onButtonClick.bind(this)
@@ -39,7 +39,12 @@ class Main extends Component {
         this.setState({
             startDate: date,
             startDateString: formatedStartDate
+        }, () => {
+            //console.log("Start String: " + this.state.startDateString)
+
         });
+
+
     };
 
     setEndDate = date => {
@@ -48,7 +53,11 @@ class Main extends Component {
         this.setState({
             endDate: date,
             endDateString: formatedEndDate
+        }, () => {
+            // console.log("end String: " + this.state.endDateString)
         });
+
+
 
     };
 
