@@ -13,4 +13,5 @@ code {
 .App, body{
   height: 100vh;
   background-color: #313638;
+  overflow: hidden;
 }

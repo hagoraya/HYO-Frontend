@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Result from './../result/result'
 
 
-
+var firstLoad = true;
 
 class Main extends Component {
 
@@ -24,6 +24,7 @@ class Main extends Component {
         };
 
         this.onButtonClick = this.onButtonClick.bind(this)
+        this.gettingData = this.gettingData.bind(this)
 
     }
 
@@ -63,6 +64,11 @@ class Main extends Component {
     };
 
     async onButtonClick() {
+
+        this.setState({
+            showResult: false
+        })
+
         const url = "https://api.randomuser.me/"
         const response = await fetch(url)
         const data = await response.json();
@@ -75,6 +81,20 @@ class Main extends Component {
     }
 
 
+
+    gettingData() {
+        if (firstLoad) {
+            firstLoad = false
+            return (
+                null
+            )
+        } else {
+            return (
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            )
+        }
+
+    }
 
 
     render() {
@@ -122,7 +142,7 @@ class Main extends Component {
                     <Button onClick={this.onButtonClick} id="contButton">Generate</Button>
 
                     <div className="resultWrapper">
-                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} personData={personData} /> : null}
+                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} personData={personData} /> : this.gettingData()}
 
                     </div>
 
