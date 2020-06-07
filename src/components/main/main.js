@@ -20,7 +20,7 @@ class Main extends Component {
             showResult: false,
             endDateString: '',
             startDateString: '',
-            personData: null
+            Data: ''
         };
 
         this.onButtonClick = this.onButtonClick.bind(this)
@@ -59,8 +59,6 @@ class Main extends Component {
             // console.log("end String: " + this.state.endDateString)
         });
 
-
-
     };
 
     async onButtonClick() {
@@ -69,18 +67,34 @@ class Main extends Component {
             showResult: false
         })
 
-        const url = "https://api.randomuser.me/"
+        const url = `https://cors-anywhere.herokuapp.com/http://159.203.180.216:8080/getWordsBetweenDates?startDate=${this.state.startDateString}&endDate=${this.state.endDateString}`
+        //  const url = "https://cors-anywhere.herokuapp.com/http://159.203.180.216:8080/getWordsBetweenDates?startDate=2019-12-15&endDate=2020-01-15"
         const response = await fetch(url)
         const data = await response.json();
-        //console.log(data)
+        console.log(data)
 
         this.setState({
             showResult: true,
-            personData: data.results[0]
+            Data: data
         });
+        //console.log(url)
+
+        // const response = await fetch(url)
+
+        // if (response.status > 200 && response.status <= 299) {
+        //     const data = await response.json();
+        //     console.log(data);
+        //     this.setState({
+        //         showResult: true,
+        //         Data: data
+        //     });
+        // } else {
+        //     console.log(response.status, response.statusText);
+        //     console.log("something went wrong")
+        // }
+
+        //console.log(data)
     }
-
-
 
     gettingData() {
         if (firstLoad) {
@@ -90,16 +104,15 @@ class Main extends Component {
             )
         } else {
             return (
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
             )
         }
-
     }
 
 
     render() {
 
-        const { startDate, endDate, startDateString, endDateString, personData } = this.state
+        const { startDate, endDate, startDateString, endDateString, Data } = this.state
 
 
         return (
@@ -142,7 +155,7 @@ class Main extends Component {
                     <Button onClick={this.onButtonClick} id="contButton">Generate</Button>
 
                     <div className="resultWrapper">
-                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} personData={personData} /> : this.gettingData()}
+                        {this.state.showResult ? <Result startDate={startDateString} endDate={endDateString} Data={Data} /> : this.gettingData()}
 
                     </div>
 

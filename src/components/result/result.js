@@ -6,15 +6,7 @@ import { getAllByPlaceholderText } from '@testing-library/react'
 import { getDefaultLocale } from 'react-datepicker'
 
 var wordCloudData = [
-    { value: 'JavaScript', count: 38 },
-    { value: 'React', count: 30 },
-    { value: 'Nodejs', count: 28 },
-    { value: 'Express.js', count: 25 },
-    { value: 'HTML5', count: 33 },
-    { value: 'MongoDB', count: 18 },
-    { value: 'CSS3', count: 22 },
-    { value: 'male', count: 1 },
-    { value: 'female', count: 1 }
+
 ]
 
 const colorOption = {
@@ -36,19 +28,19 @@ class result extends Component {
 
     renderWordCloud() {
 
-        if ((this.props.personData.gender) === 'male') {
-            wordCloudData[7].count = wordCloudData[7].count + 2
-            console.log(wordCloudData[7].count)
-            // console.log(wordCloudData[7].value)
-        } else {
-            // wordCloudData['female'].count = count + 1
-            wordCloudData[8].count = wordCloudData[8].count + 2
-            console.log(wordCloudData[8].count)
+        console.log(this.props.Data)
 
+        wordCloudData = this.props.Data
 
-
-
-        }
+        // if ((this.props.personData.gender) === 'male') {
+        //     wordCloudData[7].count = wordCloudData[7].count + 2
+        //     console.log(wordCloudData[7].count)
+        //     // console.log(wordCloudData[7].value)
+        // } else {
+        //     // wordCloudData['female'].count = count + 1
+        //     wordCloudData[8].count = wordCloudData[8].count + 2
+        //     console.log(wordCloudData[8].count)
+        //}
 
         //console.log(wordCloudData)
 
@@ -56,7 +48,7 @@ class result extends Component {
         return (
 
             <TagCloud
-                minSize={30}
+                minSize={15}
                 maxSize={70}
                 tags={wordCloudData}
                 colorOptions={colorOption}
