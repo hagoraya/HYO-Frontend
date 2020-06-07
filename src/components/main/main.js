@@ -68,32 +68,15 @@ class Main extends Component {
         })
 
         const url = `https://cors-anywhere.herokuapp.com/http://159.203.180.216:8080/getWordsBetweenDates?startDate=${this.state.startDateString}&endDate=${this.state.endDateString}`
-        //  const url = "https://cors-anywhere.herokuapp.com/http://159.203.180.216:8080/getWordsBetweenDates?startDate=2019-12-15&endDate=2020-01-15"
         const response = await fetch(url)
         const data = await response.json();
-        console.log(data)
+        //console.log(data)
 
         this.setState({
             showResult: true,
             Data: data
         });
-        //console.log(url)
 
-        // const response = await fetch(url)
-
-        // if (response.status > 200 && response.status <= 299) {
-        //     const data = await response.json();
-        //     console.log(data);
-        //     this.setState({
-        //         showResult: true,
-        //         Data: data
-        //     });
-        // } else {
-        //     console.log(response.status, response.statusText);
-        //     console.log("something went wrong")
-        // }
-
-        //console.log(data)
     }
 
     gettingData() {

@@ -15,8 +15,7 @@ const colorOption = {
     alpha: 6
 }
 
-var mcount = 0
-var fcount = 0
+
 
 class result extends Component {
     constructor(props) {
@@ -28,21 +27,9 @@ class result extends Component {
 
     renderWordCloud() {
 
-        console.log(this.props.Data)
-
         wordCloudData = this.props.Data
 
-        // if ((this.props.personData.gender) === 'male') {
-        //     wordCloudData[7].count = wordCloudData[7].count + 2
-        //     console.log(wordCloudData[7].count)
-        //     // console.log(wordCloudData[7].value)
-        // } else {
-        //     // wordCloudData['female'].count = count + 1
-        //     wordCloudData[8].count = wordCloudData[8].count + 2
-        //     console.log(wordCloudData[8].count)
-        //}
 
-        //console.log(wordCloudData)
 
 
         return (
@@ -63,7 +50,6 @@ class result extends Component {
 
     render() {
 
-        // { this.getdata() }
 
         return (
             <div className="resultWrapper">
